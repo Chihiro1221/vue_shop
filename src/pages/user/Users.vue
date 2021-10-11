@@ -356,7 +356,7 @@
           })
         }
         // 提示删除成功信息
-        this.$message.success({
+        this.$message.suctcess({
           message: '已删除用户',
           showClose: true
         })
