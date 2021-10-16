@@ -6,6 +6,7 @@ import './plugins/element.js'
 import './assets/css/global.css'
 // 引入axios库
 import axios from 'axios'
+import TreeTable from 'vue-table-with-tree-grid'
 axios.defaults.baseURL = 'http://127.0.0.1:8080/api/private/v1/'
 // 设置请求拦截器
 // 除了登录api之后，其他的api需要授权，必须在请求头中使用authrization提供token令牌
@@ -15,7 +16,7 @@ axios.interceptors.request.use((config) => {
   // 通行
   return config
 })
-
+Vue.component('tree-table', TreeTable)
 //将axios接口对象存入全局$http中
 Vue.prototype.$http = axios
 
