@@ -33,6 +33,11 @@ import {
   Alert,
   Tabs,
   TabPane,
+  Steps,
+  Step,
+  CheckboxGroup,
+  Checkbox,
+  Upload,
 } from 'element-ui'
 
 Vue.use(Button)
@@ -66,6 +71,11 @@ Vue.use(Cascader)
 Vue.use(Alert)
 Vue.use(Tabs)
 Vue.use(TabPane)
+Vue.use(Steps)
+Vue.use(Step)
+Vue.use(CheckboxGroup)
+Vue.use(Checkbox)
+Vue.use(Upload)
 // 我们需要全局挂在消息组件实例对象，这样的话我们所有的vc才可以访问得到这个对象，然后调用其中的方法
 Vue.prototype.$message = Message
 Vue.prototype.$confirm = MessageBox.confirm
