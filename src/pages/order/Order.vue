@@ -121,6 +121,8 @@ export default {
         address1: [{required: true, message: '请选择省市区县', trigger: 'blur'}],
         address2: [{required: true, message: '请填写详细地址', trigger: 'blur'}],
       },
+      // 省市区数据
+      cityData: [],
       // 控制显示物流信息对话框显示隐藏
       showProgressBox: false,
       // 存储物流信息数据
