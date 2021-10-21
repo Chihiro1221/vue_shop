@@ -280,7 +280,7 @@ export default {
 
         if (res.meta.status !== 201) {
           return this.$message.error({
-            message: '添加商品失败',
+            message: res.meta.msg,
             showClose: true,
           })
         }
