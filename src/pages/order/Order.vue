@@ -11,7 +11,7 @@
       <!-- 搜索区域 -->
       <el-row>
         <el-col :span="8">
-          <el-input placeholder="请输入订单编号" v-model="searchOrder" class="input-with-select">
+          <el-input placeholder="请输入订单编号" v-model="orderInfo.query" class="input-with-select">
             <el-button slot="append" icon="el-icon-search" @click="searchOrderInfo"></el-button>
           </el-input>
         </el-col>
@@ -78,7 +78,7 @@
               v-for="(progress  , index) in progressInfo"
               :key="index"
               :timestamp="progress.ftime">
-            {{progress.context}}
+            {{ progress.context }}
           </el-timeline-item>
         </el-timeline>
         <!--对话框底部-->
@@ -93,12 +93,11 @@
 <script>
 // 引入静态地址文件
 import staticCityData from '../../assets/citydata'
+import _ from 'lodash'
 export default {
   name: 'Order',
   data() {
     return {
-      // 搜索框数据
-      searchOrder: '',
       // 订单列表数据
       orderListData: [],
       // 订单列表默认参数
@@ -128,7 +127,38 @@ export default {
       // 存储物流信息数据
       progressInfo: [],
       // 静态地址信息
-      staticCityData
+      staticCityData,
+      // 报表静态数据
+      options: {
+        title: {
+          text: '用户来源'
+        },
+        tooltip: {
+          trigger: 'axis',
+          axisPointer: {
+            type: 'cross',
+            label: {
+              backgroundColor: '#E9EEF3'
+            }
+          }
+        },
+        grid: {
+          left: '3%',
+          right: '4%',
+          bottom: '3%',
+          containLabel: true
+        },
+        xAxis: [
+          {
+            boundaryGap: false
+          }
+        ],
+        yAxis: [
+          {
+            type: 'value'
+          }
+        ]
+      }
     }
   },
   created() {
@@ -160,8 +190,8 @@ export default {
     },
     // 搜索商品
     searchOrderInfo() {
-      this.orderInfo.query = this.searchOrder
       this.getOrderList()
+      this.orderInfo.query = ''
     },
     // 显示修改地址对话框
     editAddress() {
@@ -187,7 +217,8 @@ export default {
           showClose: true
         })
       }
-      this.progressInfo = res.data
+      const result = _.merge(res.data,this.options)
+      this.progressInfo = result
       this.showProgressBox = true
       console.log(this.progressInfo)
     }
