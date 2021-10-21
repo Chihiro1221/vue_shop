@@ -17,7 +17,7 @@
 <script>
 // 引入echarts
 import * as echarts from 'echarts';
-
+import _ from 'lodash'
 export default {
   name: "Report",
   data() {
@@ -66,7 +66,7 @@ export default {
         showClose: true
       })
     }
-    const result = Object.assign(res.data)
+    const result = _.merge(res.data,this.options)
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(result);
   },
