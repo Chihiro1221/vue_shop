@@ -45,7 +45,7 @@
     </el-card>
     <!-- 编辑分类名称对话框 -->
     <el-dialog title="修改分类" :visible.sync="editCategoryDialogVisible" width="50%" @close="editCategoryDialogClosed">
-      <el-form :model="editCategoryForm" :rules="editCategoryRules" ref="editCategoryRef" label-width="80px">
+      <el-form :model="editCategoryForm" :rules="editCategoryRules" ref="editCategoryRef" label-width="100px">
         <el-form-item label="分类名称" prop="cat_name">
           <el-input v-model="editCategoryForm.cat_name"></el-input>
         </el-form-item>

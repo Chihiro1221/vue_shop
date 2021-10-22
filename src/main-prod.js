@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
 import router from './router'
-import './plugins/element.js'
 // 引入全局样式
 import './assets/css/global.css'
 // 引入axios库
@@ -9,10 +8,8 @@ import axios from 'axios'
 import TreeTable from 'vue-table-with-tree-grid'
 // 引入富文本编辑器组件
 import VueQuillEditor from 'vue-quill-editor'
-// 引入富文本编辑器组件样式
-import 'quill/dist/quill.core.css'
-import 'quill/dist/quill.snow.css'
-import 'quill/dist/quill.bubble.css'
+// 引入nprogress进度条
+import NProgress from 'nprogress'
 
 axios.defaults.baseURL = 'http://127.0.0.1:8080/api/private/v1/'
 // 设置请求拦截器
@@ -20,9 +17,19 @@ axios.defaults.baseURL = 'http://127.0.0.1:8080/api/private/v1/'
 axios.interceptors.request.use((config) => {
   // 在发送的请求头中添加authrization属性携带token令牌
   config.headers.Authorization = sessionStorage.getItem('token')
+  // 启动nprogress进度条
+  NProgress.start()
   // 通行
   return config
 })
+
+// 设置相应拦截器
+axios.interceptors.response.use((config) => {
+  // 结束nprogress进度条
+  NProgress.done()
+  return config
+})
+
 // 在全局注册树形表格组件
 Vue.component('tree-table', TreeTable)
 // 在全局注册富文本编辑器组件
