@@ -25,18 +25,17 @@ axios.interceptors.request.use((config) => {
   // 在发送的请求头中添加authrization属性携带token令牌
   config.headers.Authorization = sessionStorage.getItem('token')
   // 启动nprogress进度条
-  NProgress.start();
+  NProgress.start()
   // 通行
   return config
 })
 
 // 设置相应拦截器
-axios.interceptors.response.use(config => {
+axios.interceptors.response.use((config) => {
   // 结束nprogress进度条
   NProgress.done()
   return config
-});
-
+})
 
 // 在全局注册树形表格组件
 Vue.component('tree-table', TreeTable)
